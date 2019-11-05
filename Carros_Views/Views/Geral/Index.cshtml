@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Consulta de Carros";
+}
+
+<div class="panel panel-default">
+    <div class="panel-content">
+        <div class="panel-header">
+            <h4 class="panel-title">Consulta de Carros</h4>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Selecione o Modelo</label>
+                <select class="form-control" id="Modelo">
+                    <option value="1005">Gol</option>
+                </select>
+            </div>
+
+            <div id="carros"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $().ready(function () {
+        AbreGrid();
+    })
+
+    function AbreGrid() {
+        var _codigo = $("#Modelo").val();
+        var id_div_destino = $("#id_div_destino").val();
+        var dados = { Codigo: _codigo }
+        var url = "api/Home/Get/" + _codigo;
+
+        $.ajax({
+            type: "GET",
+            data: dados,
+            type: "json",
+            url: url,
+            cache: true,
+            success: function (result) {
+                alert(result)
+                $(id_div_destino).html(result);
+        });
+    }
+</script>
+

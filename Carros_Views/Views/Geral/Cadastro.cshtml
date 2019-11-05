@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="panel panel-default">
+    <div class="panel-header">
+        <h4 class="panel-title">Cadastro de Carros</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <form action="#" id="form-carro">
+                <div class="form-group col-md-4">
+                    <label>Marca</label>
+                    <input type="text" name="nome" id="nome" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Modelo</label>
+                    <input type="text" name="modelo" id="modelo" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Placa</label>
+                    <input type="text" name="placa" id="placa" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Data da Venda</label>
+                    <input type="text" name="dt_Venda" id="dt_Venda" value="" class="form-control txtData" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Cor</label>
+                    <input type="text" name="cor" id="cor" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Data da Inclusão</label>
+                    <input type="text" name="dt_Inc" id="dt_Inc" value="" class="form-control txtData" />
+                </div>
+
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-success" onclick="EnviaCarro()">Salvar Carro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class=".content-wrapper">
+    <div class="panel-header">
+        <h4 class="panel-title">Cadastro de Revisões</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <form action="#" id="form-revisao">
+                <div class="form-group col-md-2">
+                    <label>Kilometragem</label>
+                    <input type="text" name="Km" id="Km" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Data da Revisão</label>
+                    <input type="text" name="Dt_revisao" id="Dt_revisao" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Valor</label>
+                    <input type="text" name="Valor" id="Valor" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Oficina</label>
+                    <input type="text" name="Oficina" id="Oficina" value="" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Data da Inclusão</label>
+                    <input type="text" name="Dt_Inc" id="Dt_Inc" value="" class="form-control" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="form-group col-md-4">
+        <button type="button" class="btn btn-success" onclick="EnviaCarro()">Salvar Revisão</button>
+    </div>
+</div>
+
+<script>
+
+    function EnviaCarro() {
+        var url = "https://localhost:44351/api/Home/PostCarros";
+        var dados = $("#form-carro").serialize();
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            data: JSON.stringify({ dados }),
+            contentType: "application/json",
+            dataType: "json",
+            accepts: "application/json; charset=UTF-8",
+            url: url,
+            async: true,
+            success: function (result) {
+                alert("funfou")
+            }
+        });
+    }
+
+    function EnviaRevisao() {
+        var url = "https://localhost:44351/api/Home/PostRevisao";
+        var dados = $("#form-revisao").serialize();
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            data: JSON.stringify({ dados }),
+            contentType: "application/json",
+            dataType: "json",
+            accepts: "application/json; charset=UTF-8",
+            url: url,
+            async: true,
+            success: function (result) {
+                alert("funfou2")
+            }
+        });
+    }
+
+</script>
+
+
